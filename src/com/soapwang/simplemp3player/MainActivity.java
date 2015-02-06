@@ -36,10 +36,15 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements OnClickListener,OnSeekBarChangeListener {
 
 	private static final int UPDATE_UI = 1;
+	private static final int REPEAT_OFF = 10;
+	private static final int REPEAT_CURRENT = 11;
+	private static final int REPEAT_LIST = 12;
+	
 	static final String TAG ="mp3player";
 	private ImageButton playBtn;
 	private ImageButton backwardBtn;
 	private ImageButton forwardBtn;
+	private ImageButton repeatBtn;
 	private TextView durationText;
 	private TextView nameText;
 	private TextView currentText;
@@ -58,16 +63,18 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 	private int duration = 0;
 	private int index = 0;
 	private int listSize = 0;
+	private int repeatMode;
 	private File musicDir;
 	RelativeLayout panel;
 	Bitmap albumCover = getLoacalBitmap("/sdcard/AirStream/cover.jpg");
+	
 	AnimationSet showAnimSet = new AnimationSet(true);
 	AnimationSet hideAnimSet = new AnimationSet(true);  
 	TranslateAnimation tranShowAction;
 	TranslateAnimation tranHideAction;
 	TranslateAnimation panelShowAction;
 	AlphaAnimation alShowAction;
-	AlphaAnimation alHideAction;
+	AlphaAnimation alHideAction;	
 	
 	private Handler handler = new Handler() {
     	public void handleMessage(Message msg) {
@@ -108,6 +115,10 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
         backwardBtn.setOnClickListener(this);
         forwardBtn = (ImageButton)findViewById(R.id.forward);       
         forwardBtn.setOnClickListener(this);
+        repeatBtn = (ImageButton)findViewById(R.id.repeat);
+        repeatBtn.setOnClickListener(this);
+        repeatMode = REPEAT_OFF;
+		repeatBtn.setImageDrawable(getResources().getDrawable(R.drawable.repeat_off));
         durationText = (TextView)findViewById(R.id.duration);
         nameText = (TextView)findViewById(R.id.track_name);
         currentText = (TextView)findViewById(R.id.current_position);
@@ -255,36 +266,37 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 				mediaPlayer.start();
 				isPlaying = true;					
 			    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){  
-			        public void onCompletion(MediaPlayer arg0) {  
+			        public void onCompletion(MediaPlayer mPlyaer) {  
 			        	//seekBar.setProgress(0);
 			        	//currentText.setText("0:00/");
-			        	arg0.stop();
-			        	arg0.reset();
-						if(index < (nameList.size()-1))
-							index++;			
-						else {						
-							index = 0;
-						}
-			        	initMediaPlayer(index);
-			        	mediaPlayer.start();
-			        	currentPosition = (int) Math.floor(mediaPlayer.getCurrentPosition()/1000);
-			        	/*
-						new Thread(new Runnable() {
-							public void run() {
-								while (mediaPlayer.isPlaying()) {							
-									Message message = new Message();
-									message.what = UPDATE_UI;
-									handler.sendMessage(message);
-									try {
-						                Thread.sleep(200);		                
-						            } catch (InterruptedException e) {
-						                e.printStackTrace();
-						            }
-								} 
-							}
-								
-						}).start();
-						*/
+			        	mPlyaer.stop();
+			        	mPlyaer.reset();
+			        	if(repeatMode == REPEAT_CURRENT) {
+				        	initMediaPlayer(index);
+				        	mediaPlayer.start();
+				        	currentPosition = (int) Math.floor(mediaPlayer.getCurrentPosition()/1000);
+			        	} else if(repeatMode == REPEAT_LIST) {
+			        		if(index < (nameList.size()-1))
+			        			index++;			
+			        		else {						
+			        			index = 0;
+			        		}
+			        		initMediaPlayer(index);
+			        		mediaPlayer.start();
+			        		currentPosition = (int) Math.floor(mediaPlayer.getCurrentPosition()/1000);
+			        	} else {
+			        		if(index < (nameList.size()-1)) {
+			        			index++;			
+				        		initMediaPlayer(index);
+				        		mediaPlayer.start();
+				        		currentPosition = (int) Math.floor(mediaPlayer.getCurrentPosition()/1000);
+			        		} else {
+			        			index = 0;
+				        		initMediaPlayer(index);
+				        		playBtn.setImageDrawable(getResources().getDrawable(R.drawable.play));
+								isPlaying = false;
+			        		}
+			        	}
 			         } 
 			    });			    
 				new Thread(new Runnable() {
@@ -341,6 +353,23 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 			initMediaPlayer(index);
 			if(isPlaying)
 				mediaPlayer.start();
+			break;
+			//repeat off->list->current->off
+		case R.id.repeat:
+			switch(repeatMode) {
+			case REPEAT_OFF:
+				repeatMode = REPEAT_LIST;
+				repeatBtn.setImageDrawable(getResources().getDrawable(R.drawable.repeat_all));
+				break;
+			case REPEAT_CURRENT:
+				repeatMode = REPEAT_OFF;
+				repeatBtn.setImageDrawable(getResources().getDrawable(R.drawable.repeat_off));
+				break;
+			case REPEAT_LIST:
+				repeatMode = REPEAT_CURRENT;
+				repeatBtn.setImageDrawable(getResources().getDrawable(R.drawable.repeat_1));
+				break;
+			}
 			break;
 		}
 		
