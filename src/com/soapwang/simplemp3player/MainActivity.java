@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +30,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -45,12 +49,12 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 	private ImageButton backwardBtn;
 	private ImageButton forwardBtn;
 	private ImageButton repeatBtn;
+	private ImageButton menuBtn;
 	private TextView durationText;
 	private TextView nameText;
 	private TextView currentText;
 	private TextView seekText;
 	private TextView number;
-	private ImageButton albumCoverView;
 	private SeekBar seekBar;
 	private MediaPlayer mediaPlayer = new MediaPlayer();
 	private ArrayList<String> pathList = new ArrayList<String>();
@@ -67,6 +71,8 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 	private File musicDir;
 	RelativeLayout panel;
 	Bitmap albumCover = getLoacalBitmap("/sdcard/AirStream/cover.jpg");
+	private PopupWindow popupWindow; 
+	ContentResolver resolver;
 	
 	AnimationSet showAnimSet = new AnimationSet(true);
 	AnimationSet hideAnimSet = new AnimationSet(true);  
@@ -108,7 +114,13 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_2);
+        initPopupWindow();
+        resolver = MainActivity.this.getContentResolver();
+        Cursor c = resolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
+        		  MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
         panel = (RelativeLayout) findViewById(R.id.panel);
+        menuBtn = (ImageButton)findViewById(R.id.menu);
+        menuBtn.setOnClickListener(this);
         playBtn = (ImageButton)findViewById(R.id.play);
         playBtn.setOnClickListener(this);
         backwardBtn = (ImageButton)findViewById(R.id.backward);
@@ -371,6 +383,10 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 				break;
 			}
 			break;
+			
+		case R.id.menu:
+			showPopupWindow();
+			break;
 		}
 		
 	}
@@ -428,7 +444,23 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
         }
     }
 
-/*
+    private void showPopupWindow() {
+		if(!popupWindow.isShowing()){  
+            popupWindow.showAsDropDown(menuBtn, -150, -500);
+		} else {
+			 popupWindow.dismiss();
+		}
+    }
+    
+    private void initPopupWindow() {
+    	View popupView = getLayoutInflater().inflate(R.layout.popup_window, null);
+    	popupWindow = new PopupWindow(popupView, 250, 400, true);
+    	popupWindow.setTouchable(true);
+    	popupWindow.setOutsideTouchable(true);
+    	//can not dismiss() without setting background
+    	popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.background));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -447,5 +479,4 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
         }
         return super.onOptionsItemSelected(item);
     }
-    */
 }

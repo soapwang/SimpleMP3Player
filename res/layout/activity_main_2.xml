@@ -23,19 +23,80 @@
             android:text="Track name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/text_primary" />
-<!-- 
-        <ImageButton
-            android:id="@+id/album_cover"
-            android:layout_width="320dp"
-            android:layout_height="320dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="42dp"
-            android:elevation="4dp"
-            android:src="@drawable/no_cover" />
- -->
 
+		 <ImageView
+		     android:id="@+id/album_cover"
+		     android:layout_width="180dp"
+		     android:layout_height="180dp"
+		     android:layout_alignLeft="@+id/track_name"
+		     android:layout_below="@+id/track_name"
+		     android:layout_marginTop="16dp"
+		     android:src="@drawable/no_cover" />
 
+		 <TextView
+		     android:id="@+id/textView2"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:layout_alignLeft="@+id/textView1"
+		     android:layout_below="@+id/textView1"
+		     android:layout_marginTop="12dp"
+		     android:text="@string/artist"
+		     android:textAppearance="?android:attr/textAppearanceSmall"
+		     android:textColor="@color/text_primary" />
+
+		 <TextView
+		     android:id="@+id/textView3"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:layout_alignLeft="@+id/textView2"
+		     android:layout_below="@+id/textView2"
+		     android:layout_marginTop="12dp"
+		     android:text="format/bit"
+		     android:textAppearance="?android:attr/textAppearanceSmall"
+		     android:textColor="@color/text_primary" />
+
+		 <TextView
+		     android:id="@+id/textView1"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:layout_alignLeft="@+id/album_cover"
+		     android:layout_below="@+id/album_cover"
+		     android:layout_marginTop="16dp"
+		     android:text="@string/album"
+		     android:textAppearance="?android:attr/textAppearanceSmall"
+		     android:textColor="@color/text_primary" />
+
+		 <TextView
+		     android:id="@+id/album_text"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:layout_alignBaseline="@+id/textView1"
+		     android:layout_alignBottom="@+id/textView1"
+		     android:layout_toRightOf="@+id/textView1"
+		     android:text="@string/unknown"
+		     android:textColor="@color/text_primary"
+		     android:textAppearance="?android:attr/textAppearanceSmall" />
+
+		 <TextView
+		     android:id="@+id/artist_text"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:layout_alignBaseline="@+id/textView2"
+		     android:layout_alignBottom="@+id/textView2"
+		     android:layout_toRightOf="@+id/textView2"
+		     android:text="@string/unknown"
+		     android:textColor="@color/text_primary"
+		     android:textAppearance="?android:attr/textAppearanceSmall" />
+
+		 <ImageButton
+		     android:id="@+id/menu"
+		     style="?android:attr/borderlessButtonStyle"
+		     android:layout_width="55dp"
+		     android:layout_height="55dp"
+		     android:layout_alignParentRight="true"
+		     android:layout_alignTop="@+id/textView3"
+		     android:background="@drawable/touch_feedback_trans"
+		     android:src="@drawable/menu" />
 
     </RelativeLayout>
     
@@ -72,6 +133,7 @@
             android:layout_height="55dp"
             android:padding="0dp"
             android:layout_alignTop="@+id/play"
+            android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/backward"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/repeat_off" />
@@ -83,6 +145,7 @@
             android:layout_height="55dp"
             android:layout_alignTop="@+id/play"
             android:layout_toLeftOf="@+id/play"
+            android:layout_marginRight="8dp"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/backward" />
 
@@ -93,6 +156,7 @@
             android:layout_height="55dp"
             android:layout_alignTop="@+id/play"
             android:layout_toRightOf="@+id/play"
+            android:layout_marginLeft="8dp"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/forward" />
 
@@ -106,6 +170,18 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/play" />
+        
+         <ImageButton
+            android:id="@+id/addNew"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignTop="@+id/play"
+            android:layout_toRightOf="@+id/forward"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/touch_feedback"
+            android:src="@drawable/add" />
 
         <SeekBar
             android:id="@+id/seekBar1"
