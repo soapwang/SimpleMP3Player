@@ -16,7 +16,7 @@ public class PlayListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play_list);
 	}
-
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -35,4 +35,5 @@ public class PlayListActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	*/
 }

@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
         Cursor c = resolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
         		  MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
         panel = (RelativeLayout) findViewById(R.id.panel);
-        menuBtn = (ImageButton)findViewById(R.id.menu);
+        menuBtn = (ImageButton)findViewById(R.id.playlist);
         menuBtn.setOnClickListener(this);
         playBtn = (ImageButton)findViewById(R.id.play);
         playBtn.setOnClickListener(this);
@@ -384,8 +384,11 @@ public class MainActivity extends Activity implements OnClickListener,OnSeekBarC
 			}
 			break;
 			
-		case R.id.menu:
-			showPopupWindow();
+		case R.id.playlist:
+			Intent intent=new Intent();
+			intent.setClass(MainActivity.this, PlayListActivity.class);
+			startActivity(intent);
+			//showPopupWindow();
 			break;
 		}
 		

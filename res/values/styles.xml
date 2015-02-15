@@ -42,5 +42,20 @@
     	<!--   theme UI controls like checkboxes and text fields -->  
     	<item name="android:colorAccent">@color/accent</item>  
     </style>
+    
+    <style name="PlaylistTheme" parent="android:Theme.Material.Light">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <!-- Main theme colors -->  
+    	<!--   your app branding color for the app bar -->  
+    	<item name="android:colorPrimary">@color/playlist_primary</item>  
+    	<!--   darker variant for the status bar and contextual app bars -->  
+   		<item name="android:colorPrimaryDark">@color/playlist_primary_dark</item>
+   		<!--  text color  -->
+   		<item name="android:textColorPrimary">@color/text_primary</item> 
+   		<!--  background color 
+   		<item name="android:windowBackground">@color/window_background</item>  -->
+    	<!--   theme UI controls like checkboxes and text fields -->  
+    	<item name="android:colorAccent">@color/accent</item>  
+    </style>
 
 </resources>

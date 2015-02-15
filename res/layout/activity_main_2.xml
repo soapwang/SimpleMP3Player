@@ -18,104 +18,66 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:singleLine="true"
             android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
             android:text="Track name"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
             android:textColor="@color/text_primary" />
 
-		 <ImageView
-		     android:id="@+id/album_cover"
-		     android:layout_width="180dp"
-		     android:layout_height="180dp"
-		     android:layout_alignLeft="@+id/track_name"
-		     android:layout_below="@+id/track_name"
-		     android:layout_marginTop="16dp"
-		     android:src="@drawable/no_cover" />
-
-		 <TextView
-		     android:id="@+id/textView2"
-		     android:layout_width="wrap_content"
-		     android:layout_height="wrap_content"
-		     android:layout_alignLeft="@+id/textView1"
-		     android:layout_below="@+id/textView1"
-		     android:layout_marginTop="12dp"
-		     android:text="@string/artist"
-		     android:textAppearance="?android:attr/textAppearanceSmall"
-		     android:textColor="@color/text_primary" />
-
-		 <TextView
-		     android:id="@+id/textView3"
-		     android:layout_width="wrap_content"
-		     android:layout_height="wrap_content"
-		     android:layout_alignLeft="@+id/textView2"
-		     android:layout_below="@+id/textView2"
-		     android:layout_marginTop="12dp"
-		     android:text="format/bit"
-		     android:textAppearance="?android:attr/textAppearanceSmall"
-		     android:textColor="@color/text_primary" />
-
-		 <TextView
-		     android:id="@+id/textView1"
-		     android:layout_width="wrap_content"
-		     android:layout_height="wrap_content"
-		     android:layout_alignLeft="@+id/album_cover"
-		     android:layout_below="@+id/album_cover"
-		     android:layout_marginTop="16dp"
-		     android:text="@string/album"
-		     android:textAppearance="?android:attr/textAppearanceSmall"
-		     android:textColor="@color/text_primary" />
-
-		 <TextView
-		     android:id="@+id/album_text"
-		     android:layout_width="wrap_content"
-		     android:layout_height="wrap_content"
-		     android:layout_alignBaseline="@+id/textView1"
-		     android:layout_alignBottom="@+id/textView1"
-		     android:layout_toRightOf="@+id/textView1"
-		     android:text="@string/unknown"
-		     android:textColor="@color/text_primary"
-		     android:textAppearance="?android:attr/textAppearanceSmall" />
-
-		 <TextView
-		     android:id="@+id/artist_text"
-		     android:layout_width="wrap_content"
-		     android:layout_height="wrap_content"
-		     android:layout_alignBaseline="@+id/textView2"
-		     android:layout_alignBottom="@+id/textView2"
-		     android:layout_toRightOf="@+id/textView2"
-		     android:text="@string/unknown"
-		     android:textColor="@color/text_primary"
-		     android:textAppearance="?android:attr/textAppearanceSmall" />
-
-		 <ImageButton
-		     android:id="@+id/menu"
-		     style="?android:attr/borderlessButtonStyle"
-		     android:layout_width="55dp"
-		     android:layout_height="55dp"
-		     android:layout_alignParentRight="true"
-		     android:layout_alignTop="@+id/textView3"
-		     android:background="@drawable/touch_feedback_trans"
-		     android:src="@drawable/menu" />
-
-    </RelativeLayout>
-    
         <TextView
-            android:id="@+id/seek_text"
-            android:textColor="#757575"
+            android:id="@+id/artist_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/track_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="170dp"
-            android:background="@drawable/panel_rectangle"
+            android:layout_marginTop="10dp"
+            android:text="@string/artist"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text_primary" />
+
+        <ImageView
+            android:id="@+id/album_cover"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:layout_below="@+id/artist_text"
+            android:layout_marginTop="16dp"
             android:elevation="4dp"
-            android:paddingBottom="4dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="4dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/panel_rectangle"
+            android:src="@drawable/no_cover_2" />
+
+        <ImageButton
+            android:id="@+id/playlist"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/album_cover"
+            android:background="@drawable/touch_feedback_trans"
+            android:src="@drawable/menu" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/seek_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="170dp"
+        android:background="@drawable/panel_rectangle"
+        android:elevation="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#757575" />
+
     <RelativeLayout
         android:id="@+id/panel"
         android:layout_width="350dp"
@@ -125,17 +87,17 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/panel_rectangle"
         android:elevation="2dp" >
-        
+
         <ImageButton
             android:id="@+id/repeat"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:padding="0dp"
             android:layout_alignTop="@+id/play"
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/backward"
             android:background="@drawable/touch_feedback"
+            android:padding="0dp"
             android:src="@drawable/repeat_off" />
 
         <ImageButton
@@ -144,8 +106,8 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignTop="@+id/play"
-            android:layout_toLeftOf="@+id/play"
             android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/play"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/backward" />
 
@@ -155,8 +117,8 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignTop="@+id/play"
-            android:layout_toRightOf="@+id/play"
             android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/play"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/forward" />
 
@@ -170,16 +132,16 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/play" />
-        
-         <ImageButton
+
+        <ImageButton
             android:id="@+id/addNew"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignTop="@+id/play"
-            android:layout_toRightOf="@+id/forward"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/forward"
             android:background="@drawable/touch_feedback"
             android:src="@drawable/add" />
 
@@ -200,7 +162,7 @@
             android:layout_marginLeft="14dp"
             android:text="1/16"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-            <!--  android:textColor="@color/text_primary"-->
+        <!-- android:textColor="@color/text_primary" -->
 
         <TextView
             android:id="@+id/current_position"
@@ -220,7 +182,6 @@
             android:layout_marginRight="16dp"
             android:text="0:00"
             android:textAppearance="?android:attr/textAppearanceSmall" />
- 
     </RelativeLayout>
 
 </RelativeLayout>

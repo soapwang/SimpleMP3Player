@@ -5,5 +5,11 @@
     <color name="accent">#009688</color>
     <color name="accent_dark">#9e9e9e</color>   
     <color name="text_primary">#ffffff</color>  
-    <color name="window_background">#eceff1</color>  
+    <color name="window_background">#eceff1</color>
+    <color name="playlist_primary">#259b24</color>
+    <color name="playlist_primary_dark">#0d5302</color>
+    <color name="artist_primary">#00bcd4</color>
+    <color name="artist_primary_dark">#006064</color>
+    <color name="album_primary">#673ab7</color>
+    <color name="album_primary_dark">#311b92</color> 
 </resources>
